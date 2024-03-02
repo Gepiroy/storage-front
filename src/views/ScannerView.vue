@@ -1,10 +1,13 @@
 <script setup>
+  //import { ref } from 'vue'
   import { QrcodeStream } from 'vue-qrcode-reader'
+  //const message = ref("NOTHING NAHUY!")
 </script>
 
 <template>
   <div class="QR-div">
     <qrcode-stream @error="onError" @detect="onDetect"></qrcode-stream>
+    <p>{{ message }}</p>
   </div>
 </template>
 
@@ -18,13 +21,19 @@
 
 <script>
 export default {
-  methods: {
-  onError (error) {
-    window.alert(error)
+  data() {
+    return {
+      message: "QR will be there."
+    }
+    
   },
-  onDetect(detectedCodes){
-    window.alert(detectedCodes) // gonna do this later, when I'll make it to work on phone.
+  methods: {
+    onError (error) {
+      window.alert(error)
+    },
+    onDetect(detectedCodes){
+      this.message = "Link: "+JSON.stringify(detectedCodes) //temporary just output it.
+    }
   }
-}
 }
 </script>

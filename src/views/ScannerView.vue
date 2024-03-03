@@ -1,7 +1,7 @@
 <script setup>
-  //import { ref } from 'vue'
-  import { QrcodeStream } from 'vue-qrcode-reader'
-  //const message = ref("NOTHING NAHUY!")
+//import { ref } from 'vue'
+import { QrcodeStream } from "vue-qrcode-reader";
+//const message = ref("NOTHING NAHUY!")
 </script>
 
 <template>
@@ -12,28 +12,27 @@
 </template>
 
 <style scoped>
-  .QR-div{
-    border: 1px solid black;
-    padding: 5px;
-    border-radius: 4px;
-  }
+.QR-div {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 4px;
+}
 </style>
 
 <script>
 export default {
   data() {
     return {
-      message: "QR will be there."
-    }
-    
+      message: "QR will be there.",
+    };
   },
   methods: {
-    onError (error) {
-      window.alert(error)
+    onError(error) {
+      //window.alert(error);
     },
-    onDetect(detectedCodes){
-      this.message = "Link: "+JSON.stringify(detectedCodes) //temporary just output it.
-    }
-  }
-}
+    onDetect(detectedCodes) {
+      this.message = "Link: " + JSON.stringify(detectedCodes); //temporary just output it.
+    },
+  },
+};
 </script>

@@ -1,4 +1,5 @@
 <script setup>
+import db from "@/backend/db.js";
 //import { ref } from 'vue'
 import { QrcodeStream } from "vue-qrcode-reader";
 //const message = ref("NOTHING NAHUY!")
@@ -31,7 +32,13 @@ export default {
       //window.alert(error);
     },
     onDetect(detectedCodes) {
-      this.message = "Link: " + JSON.stringify(detectedCodes); //temporary just output it.
+      this.message = "Link: " + JSON.stringify(detectedCodes);
+      detectedCodes.array.forEach(code => {
+        if(code.startsWith("slot")){
+          let id = code.substring(4);
+          this.message = "Slot "+id+": " + JSON.stringify(db.fetch('slots/'+id));
+        }
+      });
     },
   },
 };
